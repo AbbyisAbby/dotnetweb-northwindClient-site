@@ -60,13 +60,33 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // mouseover event
-    document.getElementById('checkbox-card').addEventListener('mouseover', function(e){
-        if (e.target.classList.contains('form-check-input')||e.target.classList.contains('form-check-label')) {
-            document.getElementById("happy-birthday").style.color = e.target.dataset['color'];
-            // console.log(e.target.dataset['color']);
-        }
-        else {
+    
+    // document.getElementById('checkbox-card').addEventListener('mouseover', function(e){
+    //     if (e.target.classList.contains('form-check-input')||e.target.classList.contains('form-check-label')) {
+    //         document.getElementById("happy-birthday").style.color = e.target.dataset['color'];
+    //         // console.log(e.target.dataset['color']);
+    //     }
+    //     else {
+    //         document.getElementById("happy-birthday").style.color = "gray";
+    //     }
+    // });
+
+    // https://stackoverflow.com/questions/19655189/javascript-click-event-listener-on-class
+    Array.from(this.getElementsByClassName('form-check')).forEach(function(element) {
+        element.addEventListener('mouseover', function(e) {
+            if (e.target.classList.contains('form-check-input')||e.target.classList.contains('form-check-label')) {
+                document.getElementById("happy-birthday").style.color = e.target.dataset['color'];
+                // console.log(e.target.dataset['color']);
+            }
+            else {
+                document.getElementById("happy-birthday").style.color = "gray";
+            }
+        });
+    });
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event
+    Array.from(this.getElementsByClassName('form-check')).forEach(function(element) {
+        element.addEventListener('mouseleave', function(e) {
             document.getElementById("happy-birthday").style.color = "gray";
-        }
+        });
     });
 });
